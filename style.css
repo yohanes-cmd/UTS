@@ -1,0 +1,428 @@
+/* --- VARIABEL WARNA & KONFIGURASI --- */
+:root {
+  --bg-dark: #0f172a; /* Latar belakang utama (Navy gelap) */
+  --bg-card: #1e293b; /* Latar belakang kartu */
+  --primary: #38bdf8; /* Biru terang (Cyan) untuk aksen */
+  --secondary: #64748b; /* Abu-abu kebiruan untuk teks sekunder */
+  --text-light: #f1f5f9; /* Warna teks utama */
+  --gold: #fbbf24; /* Aksen Emas untuk IPK */
+  --glass: rgba(15, 23, 42, 0.85); /* Efek kaca untuk navbar */
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --font-main: "Poppins", sans-serif;
+}
+
+/* Reset Dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* --- NAVBAR (GLASSMORPHISM) --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--glass);
+  backdrop-filter: blur(10px); /* Efek blur di belakang navbar */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+}
+
+/* Garis bawah animasi pada menu */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Menu Burger (Mobile) */
+.menu-toggle {
+  display: none;
+}
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+/* --- BERANDA (HERO SECTION) --- */
+#beranda {
+  display: flex; /* Default tampil */
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  background: radial-gradient(circle at top right, #1e293b, var(--bg-dark));
+  padding-top: 80px; /* Kompensasi tinggi navbar */
+}
+
+.intro-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap-reverse; /* Agar di HP gambar di atas teks */
+  gap: 2rem;
+}
+
+.intro-text {
+  flex: 1;
+  min-width: 300px;
+  animation: fadeUp 1s ease forwards;
+}
+
+.intro-text h4 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.intro-text h1 span {
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--primary), #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.intro-text h3 {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+}
+
+.intro-text p {
+  color: #94a3b8;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.intro-text strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.motto {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--primary);
+  border-radius: 50px;
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+.intro-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  animation: zoomIn 1s ease forwards;
+}
+
+.intro-image img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--bg-card);
+  box-shadow: 0 0 50px rgba(56, 189, 248, 0.3);
+  z-index: 2;
+}
+
+/* Efek lingkaran di belakang foto */
+.intro-image::before {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  background: var(--primary);
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.2;
+  filter: blur(20px);
+  top: 0;
+}
+
+/* --- PORTOFOLIO SECTION --- */
+#portofolio {
+  display: none; /* Default hidden, JS akan mengubah ini */
+  min-height: 100vh;
+  padding: 100px 5% 50px;
+  background-color: var(--bg-dark);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h1,
+.section-header h2 {
+  font-size: 2.5rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: var(--secondary);
+}
+
+/* Card Styling */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.full-width {
+  width: 100%;
+  text-align: center;
+}
+
+.full-width h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+.card-image-box img {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Grid untuk Sertifikat */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.portfolio-grid .card {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portfolio-grid img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.card-desc {
+  font-weight: 600;
+  color: var(--text-light);
+  margin-top: auto;
+}
+
+/* --- WHATSAPP BUTTON --- */
+.whatsapp-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 2000;
+}
+
+.whatsapp-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #25d366;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  transition: transform 0.3s;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+  background-color: #1ebc57;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+    color: var(--text-light);
+    font-size: 1.8rem;
+  }
+
+  /* Nav icon bars (opsional untuk styling icon burger) */
+  .navicon {
+    background: white;
+    display: block;
+    height: 2px;
+    position: relative;
+    width: 18px;
+  }
+  .navicon::before,
+  .navicon::after {
+    background: white;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    width: 100%;
+  }
+  .navicon::before {
+    top: 5px;
+  }
+  .navicon::after {
+    top: -5px;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: var(--bg-card);
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
+    transform: translateY(-150%); /* Sembunyi ke atas */
+    transition: transform 0.4s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Logic Tampilkan Menu */
+  .menu-toggle:checked ~ .nav-links {
+    transform: translateY(0);
+  }
+
+  .intro-container {
+    flex-direction: column-reverse; /* Gambar di atas teks */
+    text-align: center;
+  }
+
+  .intro-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .intro-image img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .intro-image::before {
+    width: 260px;
+    height: 260px;
+  }
+
+  .intro-text p {
+    margin: 0 auto 2rem auto; /* Center paragraph */
+  }
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
